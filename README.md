@@ -1,4 +1,4 @@
-# coretrace-tester-framework
+# coretrace-testkit
 
 Minimal Python test framework used across CoreTrace repos.
 
