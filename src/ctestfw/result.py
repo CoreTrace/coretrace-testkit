@@ -5,6 +5,7 @@ from typing import Optional, Sequence, Dict
 
 from .platform import PlatformInfo
 
+
 @dataclass(frozen=True)
 class RunResult:
     argv: Sequence[str]
@@ -16,6 +17,7 @@ class RunResult:
 
     def ok(self) -> bool:
         return self.exit_code == 0
+
 
 @dataclass(frozen=True)
 class CompileResult:

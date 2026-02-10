@@ -7,6 +7,11 @@ Minimal Python test framework used across CoreTrace repos.
 python3 -m pip install -e .
 ```
 
+## Install (editable + lint)
+```bash
+python3 -m pip install -e .[lint]
+```
+
 ## Install (from git)
 ```bash
 python3 -m pip install "git+https://github.com/CoreTrace/coretrace-testkit.git"
@@ -17,6 +22,12 @@ python3 -m pip install "git+ssh://git@github.com/CoreTrace/coretrace-testkit.git
 ## Import
 ```python
 from ctestfw.runner import CompilerRunner, RunnerConfig
+```
+
+## Format & lint (PEP 8)
+```bash
+./script/format.sh
+./script/format-check.sh
 ```
 
 ## Example (minimal)
