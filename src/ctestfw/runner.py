@@ -2,16 +2,18 @@ from __future__ import annotations
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, Optional, Sequence
 
 from .result import RunResult, CompileResult
 from .platform import detect_platform
+
 
 @dataclass(frozen=True)
 class RunnerConfig:
     executable: Path
     default_timeout_s: float = 20.0
     default_env: Optional[Dict[str, str]] = None
+
 
 class CompilerRunner:
     def __init__(self, cfg: RunnerConfig) -> None:

@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from enum import Enum, auto
 from pathlib import Path
 
+
 class ArtifactKind(Enum):
     ELF = auto()
     MACHO = auto()
@@ -10,14 +11,17 @@ class ArtifactKind(Enum):
     LLVM_BITCODE = auto()
     UNKNOWN = auto()
 
+
 @dataclass(frozen=True)
 class ArtifactInfo:
     path: Path
     kind: ArtifactKind
 
+
 def _read_prefix(p: Path, n: int = 64) -> bytes:
     with p.open("rb") as f:
         return f.read(n)
+
 
 def detect_artifact_kind(p: Path) -> ArtifactInfo:
     data = _read_prefix(p, 64)
@@ -49,7 +53,12 @@ def detect_artifact_kind(p: Path) -> ArtifactInfo:
     try:
         txt = data.decode("utf-8", errors="ignore")
         head = txt.lstrip()
-        if head.startswith("; ModuleID =") or head.startswith("source_filename") or "target triple" in head[:120]:
+        is_ir_text = (
+            head.startswith("; ModuleID =")
+            or head.startswith("source_filename")
+            or "target triple" in head[:120]
+        )
+        if is_ir_text:
             return ArtifactInfo(p, ArtifactKind.LLVM_IR_TEXT)
     except Exception:
         pass

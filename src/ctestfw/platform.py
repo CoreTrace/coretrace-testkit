@@ -3,11 +3,13 @@ from dataclasses import dataclass
 from enum import Enum, auto
 import platform
 
+
 class OS(Enum):
     LINUX = auto()
     MACOS = auto()
     WINDOWS = auto()
     OTHER = auto()
+
 
 class Arch(Enum):
     X86_64 = auto()
@@ -16,12 +18,14 @@ class Arch(Enum):
     ARM32 = auto()
     OTHER = auto()
 
+
 @dataclass(frozen=True)
 class PlatformInfo:
     os: OS
     arch: Arch
     machine: str
     system: str
+
 
 def detect_platform() -> PlatformInfo:
     system = platform.system().lower()
