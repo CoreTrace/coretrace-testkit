@@ -80,3 +80,8 @@ print(report.ok())
 for r in report.reports:
     print(r.name, r.ok, r.errors)
 ```
+
+## License
+
+Apache License 2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE). Versions up to `v0.1.0` were
+published under GPL-3.0.
